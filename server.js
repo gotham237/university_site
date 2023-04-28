@@ -2,7 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 //const createDB = require('./database');
 const path = require("path");
-const mysql = require("mysql2");
+const mysql2 = require("mysql2");
 
 const userRouter = require("./routes/userRoutes");
 
@@ -21,7 +21,7 @@ app.use("/api/v1/users", userRouter);
 const port = process.env.PORT || 1338;
 
 // MySql
-const pool = mysql.createPool({
+const pool = mysql2.createPool({
   connectionLimit: 10,
   host: process.env.HOST,
   user: process.env.USER,

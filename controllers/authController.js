@@ -1,10 +1,10 @@
 const bcrypt = require("bcrypt");
-const mysql = require("mysql2");
+const mysql2 = require("mysql2");
 const path = require('path');
 
 require('dotenv').config();
 
-const pool = mysql.createPool({
+const pool = mysql2.createPool({
   connectionLimit: 10,
   host: process.env.HOST,
   user: process.env.USER,
@@ -30,7 +30,7 @@ exports.signup = async (req, res) => {
       hashedPassword,
     ]);
     connection.query(searchQuery, (err, result) => {
-      //   if (err) throw (err)
+         if (err) throw (err)
       if (result.length != 0) {
         connection.release();
         res.status(400).json({
@@ -40,7 +40,7 @@ exports.signup = async (req, res) => {
       } else {
         connection.query(insertQuery, (err, result) => {
           connection.release();
-          //  if (err) throw (err)
+            if (err) throw (err)
           res.status(200).json({
             status: "success",
             data: {
