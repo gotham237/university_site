@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 //const createDB = require('./database');
 const path = require("path");
 const mysql = require("mysql2");
+const cookieParser = require('cookie-parser');
 
 const userRouter = require("./routes/userRoutes");
 
@@ -14,6 +15,7 @@ dotenv.config({ path: "./config.env" });
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 
 //Routes
 app.use("/api/v1/users", userRouter);
