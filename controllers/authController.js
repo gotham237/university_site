@@ -7,15 +7,6 @@ const jwt = require('jsonwebtoken');
 
 dotenv.config({ path: "./config.env" });
 
-const pool = mysql2.createPool({
-  connectionLimit: 10,
-  host: process.env.HOST,
-  user: process.env.USER,
-  port: process.env.PORT_DB,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE
-});
-
 const signToken = id => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN

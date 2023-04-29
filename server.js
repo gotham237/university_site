@@ -2,7 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 //const createDB = require('./database');
 const path = require("path");
-const mysql = require("mysql2");
+const mysql2 = require("mysql2");
 const cookieParser = require('cookie-parser');
 
 const userRouter = require("./routes/userRoutes");
@@ -29,23 +29,6 @@ const pool = mysql2.createPool({
   user: process.env.USER,
   password: process.env.PASSWORD,
   database: process.env.DATABASE,
-});
-
-app.get("/baza", (req, res) => {
-  pool.getConnection((err, connection) => {
-    if (err) throw err;
-    console.log(`connected as id ${connection.threadId}`);
-
-    connection.query("SELECT * from users", (err, rows) => {
-      connection.release();
-
-      if (!err) {
-        res.send(rows);
-      } else {
-        console.log(err);
-      }
-    });
-  });
 });
 
 const server = app.listen(port, () => {
