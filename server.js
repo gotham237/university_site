@@ -6,12 +6,16 @@ const mysql2 = require("mysql2");
 const cookieParser = require("cookie-parser");
 
 const userRouter = require("./routes/userRoutes");
+const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
 
 dotenv.config({ path: "./config.env" });
 
 //middlewares
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -24,6 +28,7 @@ app.get("/", (req, res) => {
 
 //Routes
 app.use("/api/v1/users", userRouter);
+app.use('/', viewRouter);
 
 app.get("/loginSignup", (req, res) => {
   res.sendFile(path.join(__dirname + "/public/loginRegisterForm.html"));
