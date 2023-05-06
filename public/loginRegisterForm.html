@@ -1,66 +1,144 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Slide Navbar</title>
-	<!--<link rel="stylesheet" type="text/css" href="slide navbar style.css">-->
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="loginRegisterFormStyle.css">
-</head>
-<body>
-	<div class="main">  	
-		<input type="checkbox" id="chk" aria-hidden="true">
+  <head>
+    <title>Slide Navbar</title>
+    <!--<link rel="stylesheet" type="text/css" href="slide navbar style.css">-->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="loginRegisterFormStyle.css" />
+  </head>
+  <body>
+    <div class="main">
+      <input type="checkbox" id="chk" aria-hidden="true" />
 
-			<div class="signup">
-				<form>
-					<label for="chk" aria-hidden="true">Sign up</label>
-					<input type="text" name="name" id="signup-name" placeholder="User name" required="">
-					<input type="email" name="email" id="signup-email" placeholder="Email" required="">
-					<input type="password" name="pswd" id="signup-pass" placeholder="Password" required="">
-					<button type="submit" id="signup-btn">Sign up</button>
-				</form>
-			</div>
+      <div class="signup">
+        <form>
+          <label for="chk" aria-hidden="true">Sign up</label>
+          <input
+            type="text"
+            name="firstName"
+            id="signup-firstName"
+            placeholder="First name"
+            required=""
+          />
+          <input
+            type="text"
+            name="lastName"
+            id="signup-lastName"
+            placeholder="Last name"
+            required=""
+          />
+          <input
+            type="email"
+            name="email"
+            id="signup-email"
+            placeholder="Email"
+            required=""
+          />
+          <input
+            type="password"
+            name="pswd"
+            id="signup-pass"
+            placeholder="Password"
+            required=""
+          />
+          <button type="submit" id="signup-btn">Sign up</button>
+        </form>
+      </div>
 
-			<div class="login">
-				<form>
-					<label for="chk" aria-hidden="true">Login</label>
-					<input type="email" name="email" placeholder="Email" required="">
-					<input type="password" name="pswd" placeholder="Password" required="">
-					<button>Login</button>
-				</form>
-			</div>
-	</div>
-	<script>
-		let signupBtn = document.querySelector("#signup-btn");
-		let username = document.getElementById("#signup-name");
-		let email = document.getElementById("#signup-email");
-		let password = document.getElementById("#signup-pass");
+      <div class="login">
+        <form>
+          <label for="chk" aria-hidden="true">Login</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            required=""
+          />
+          <input
+            type="password"
+            name="pswd"
+            placeholder="********"
+            required=""
+          />
+          <button id="login-btn">Login</button>
+        </form>
+      </div>
+    </div>
+    <!-- <script>
+      let signupBtn = document.getElementById("signup-btn");
+      let loginBtn = document.getElementById("login-btn");
+      let firstName = document.getElementById("signup-firstName").value;
+      let lastName = document.getElementById("signup-lastName").value;
+      let email = document.getElementById("signup-email").value;
+      let password = document.getElementById("signup-pass").value;
 
-		const BASE_URL = "http://localhost:1338";
+      const BASE_URL = "http://localhost:1338";
 
-		signupBtn.addEventListener("click", async () => {
-			let user = {
-			username: username.value,
-			email: email.value,
-			password: password.value
-		};
-		let request = await fetch(`${BASE_URL}/api/v1/signup`, {
-			method: POST,
-			headers: {
-				"Content-Type": "application/json" 
-			},
-			body: JSON.stringify(user)
-		})
-		.then((response) => response.json())
-  		.then((data) => {
-    		console.log("Success:", data);
-  		})
-  		.catch((error) => {
-   		console.error("Error:", error);
- 		});
-		let message = await request.text();
+      // 		let firstName = document.getElementById("signup-firstName").value;
+      // let lastName = document.getElementById("lastName").value;
+      // let email = document.getElementById("email").value;
+      // let password = document.getElementById("password").value;
+      
+      signupBtn.addEventListener("click", async () => {
+        console.log('signup');
+        // let user = {
+        //   firstName: firstName,
+        //   lastName: lastName,
+        //   email: email,
+        //   password: password,
+        // };
+        // let request = await fetch(`${BASE_URL}/api/v1/users/signup`, {
+        //   method: POST,
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(user),
+        // })
+        //   .then((data) => {
+        //     showAlert("success", "Successfully signed up");
+        //     window.setTimeout(() => {
+        //       location.assign("/index.html");
+        //     }, 1500);
+        //   })
+        //   .catch((error) => {
+        //     showAlert("error", error.response.data.message);
+        //   });
+        // let message = await request.text();
 
-        alert(message);
-		})
-	</script>
-</body>
+        // alert(message);
+      });
+      // loginBtn.addEventListener("click", async () => {
+      //   let user = {
+      //     firstName: firstName.value,
+      //     lastName: lastName.value,
+      //     email: email.value,
+      //     password: password.value,
+      //   };
+      //   let request = await fetch(`${BASE_URL}/api/v1/users/signup`, {
+      //     method: POST,
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(user),
+      //   })
+      //     .then((response) => response.json())
+      //     .then((data) => {
+      //       showAlert("success", "Successfully logged in");
+      //       window.setTimeout(() => {
+      //         location.assign("/index.html");
+      //       }, 1500);
+      //     })
+      //     .catch((error) => {
+      //       showAlert("error", error.response.data.message);
+      //     });
+      //   let message = await request.text();
+
+      //   alert(message);
+      // });
+    </script> -->
+    <script src="/js/bundle.js"></script>
+  </body>
 </html>
