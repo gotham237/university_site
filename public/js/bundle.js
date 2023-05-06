@@ -12003,6 +12003,8 @@ var login = /*#__PURE__*/function () {
             window.setTimeout(function () {
               location.assign("/");
             }, 1500);
+          } else {
+            (0, _alerts.showAlert)("fail", res.data.message);
           }
           _context.next = 10;
           break;
@@ -12213,8 +12215,8 @@ if (signupBtn) {
 if (loginBtn) {
   loginBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    var email = document.getElementById("signup-email").value;
-    var password = document.getElementById("signup-pass").value;
+    var email = document.getElementById("login-email").value;
+    var password = document.getElementById("login-pass").value;
     (0, _loginSignup.login)(email, password);
   });
 }

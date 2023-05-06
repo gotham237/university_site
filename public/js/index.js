@@ -19,8 +19,8 @@ if (signupBtn) {
 if (loginBtn) {
   loginBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    let email = document.getElementById("signup-email").value;
-    let password = document.getElementById("signup-pass").value;
+    let email = document.getElementById("login-email").value;
+    let password = document.getElementById("login-pass").value;
     login(email, password);
   });
 }

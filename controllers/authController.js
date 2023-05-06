@@ -83,7 +83,6 @@ exports.signup = async (req, res) => {
 exports.login = async (req,res) => {
 
   const { email, password } = req.body;
-  
   db.getConnection(async (err, connection) => {
       if (err) throw (err);
       const sqlSearch = "Select * from users where email = ?"
