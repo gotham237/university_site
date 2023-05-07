@@ -12198,8 +12198,6 @@ require("core-js/modules/web.immediate.js");
 require("core-js/modules/web.dom.iterable.js");
 require("regenerator-runtime/runtime.js");
 var _loginSignup = require("./loginSignup");
-console.log("Hello from bundler");
-console.log('nic');
 var signupBtn = document.getElementById("signup-btn");
 var loginBtn = document.getElementById("login-btn");
 if (signupBtn) {

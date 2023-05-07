@@ -1,5 +1,3 @@
-console.log("Hello from bundler");
-console.log('nic');
 import "@babel/polyfill";
 import { login, signup } from "./loginSignup";
 
