@@ -7,7 +7,7 @@
 .background{
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(../pictures/harvard_background.jpg);
+    background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url(/pictures/harvard_background.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -321,3 +321,92 @@ svg{
     margin-top: 20px;
     font-weight: 600;
 }
+
+/*---------------------alerts style--------------------*/
+.alert {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: 9999;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-align: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 1.6rem 15rem;
+    -webkit-box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.25);
+  }
+  .alert--success {
+    background-color: #20bf6b;
+  }
+  .alert--error {
+    background-color: #eb4d4b;
+  }
+
+
+  /*----------------subject page, subject style-----------------*/
+
+  .overview-box {
+    background-color: #f7f7f7;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .overview-box__group:not(:last-child) {
+    margin-bottom: 7rem;
+  }
+  .overview-box__detail {
+    font-size: 1.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-weight: 400;
+  }
+  .overview-box__detail svg {
+    margin-right: 1.25rem;
+  }
+  .overview-box__detail:not(:last-child) {
+    margin-bottom: 2.25rem;
+  }
+  .overview-box__icon {
+    height: 2.25rem;
+    width: 2.25rem;
+    fill: #55c57a;
+  }
+  .overview-box__label {
+    font-weight: 700;
+    margin-right: 2.25rem;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+  }
+  .overview-box__text {
+    text-transform: capitalize;
+  }
+  .overview-box__img {
+    border-radius: 50%;
+    height: 3.5rem;
+    margin-right: 1.25rem;
+  }
+
+  .subject-btn {
+    margin: 40px;
+    padding: 40px;
+    justify-content: center;
+  }
+
+  .subjects-h1 {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 60px;
+    
+  }
