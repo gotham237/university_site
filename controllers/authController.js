@@ -1,11 +1,19 @@
 const bcrypt = require("bcrypt");
-const mysql2 = require("mysql2");
 const path = require('path');
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
-
+const mysql = require('mysql2');
 
 dotenv.config({ path: "./config.env" });
+
+const pool = mysql.createPool({
+  connectionLimit: 10,
+  host: process.env.HOST,
+  user: process.env.USER,
+  port: process.env.PORT_DB,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE
+});
 
 const signToken = id => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -36,10 +44,12 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = async (req, res) => {
+  console.log('signup server');
   const { firstName, lastName, email, password } = req.body;
+  console.log(firstName, lastName, email, password, "nic");
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  pool.getConnection(async (err, connection) => {
+  db.getConnection(async (err, connection) => {
     if (err) throw err;
     const sqlSearch = "SELECT * FROM users WHERE email = ?";
     const searchQuery = mysql.format(sqlSearch, [email]);
@@ -73,8 +83,7 @@ exports.signup = async (req, res) => {
 exports.login = async (req,res) => {
 
   const { email, password } = req.body;
-  
-  pool.getConnection(async (err, connection) => {
+  db.getConnection(async (err, connection) => {
       if (err) throw (err);
       const sqlSearch = "Select * from users where email = ?"
       const search_query = mysql.format(sqlSearch, [email])
