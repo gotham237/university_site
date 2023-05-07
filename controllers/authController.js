@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const mysql2 = require("mysql2");
+const mysql = require("mysql2");
 const path = require('path');
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
@@ -7,12 +7,12 @@ const jwt = require('jsonwebtoken');
 
 dotenv.config({ path: "./config.env" });
 
-const pool = mysql2.createPool({
+const pool = mysql.createPool({
   connectionLimit: 10,
   host: process.env.HOST,
   user: process.env.USER,
   port: process.env.PORT_DB,
-  password: process.env.PASSWORD,
+  password: 'Gothamcity123',
   database: process.env.DATABASE
 });
 
