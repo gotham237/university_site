@@ -19,7 +19,7 @@ export const login = async (email, password) => {
       }, 1500);
     }
     else {
-      showAlert("fail", res.data.message);
+      showAlert("error", res.data.message);
     }
   } catch (err) {
     showAlert("error", err.response.data.message);
@@ -40,6 +40,12 @@ export const signup = async (firstName, lastName, email, password) => {
 
     if (res.data.status === "success") {
       showAlert("success", "Signed up succesfully!");
+      window.setTimeout(() => {
+        location.assign("/");
+      }, 1500);
+    }
+    else {
+      showAlert("fail", res.data.message);
     }
   } catch (err) {
     console.log(err.response);
