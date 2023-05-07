@@ -45,23 +45,6 @@ const pool = mysql.createPool({
   database: process.env.DATABASE,
 });
 
-app.get("/baza", (req, res) => {
-  pool.getConnection((err, connection) => {
-    if (err) throw err;
-    console.log(`connected as id ${connection.threadId}`);
-
-    connection.query("SELECT * from users", (err, rows) => {
-      connection.release();
-
-      if (!err) {
-        res.send(rows);
-      } else {
-        console.log(err);
-      }
-    });
-  });
-});
-
 const server = app.listen(port, () => {
   console.log(`App running on port: ${port}`);
 });
