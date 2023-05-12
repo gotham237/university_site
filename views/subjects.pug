@@ -7,13 +7,15 @@
 doctype html
 html
   head
-    style
-      include ../public/style.css
     meta(charset='UTF-8')
     meta(name="viewport" content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet', href='style.css')
     title Subjects
+    
   body
     h1.subjects-h1 Subjects
     .subjects-container
     each subject in subjects
-      button.subject-btn= subject.name
+      .subject-btn
+        a(href=`/subjects/${subject.slug}`)= subject.name
+      

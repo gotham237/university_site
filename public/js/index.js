@@ -3,6 +3,7 @@ import { login, signup } from "./loginSignup";
 
 let signupBtn = document.getElementById("signup-btn");
 let loginBtn = document.getElementById("login-btn");
+let subjectButtton = document.getElementById('subject-enroll');
 
 if (signupBtn) {
   signupBtn.addEventListener("click", (e) => {
@@ -22,3 +23,13 @@ if (loginBtn) {
     login(email, password);
   });
 }
+
+if(subjectButtton) {
+  subjectButtton.addEventListener('click', (e) => {
+    e.preventDefault();
+     const { subject } = e.target.dataset; // e.target is button which was clicked
+     applySubject(subject);
+  })
+}
+
+
