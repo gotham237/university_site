@@ -35,7 +35,6 @@ const createSendToken = (user, statusCode, res) => {
   res.cookie("jwt", token, cookieOptions);
   //Remove the password from the output
   user.password = undefined;
-  console.log(token);
   res.status(statusCode).json({
     status: "success",
     token,
@@ -46,7 +45,7 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = async (req, res) => {
-  console.log("signup server");
+  console.log('signup server');
   const { firstName, lastName, email, password } = req.body;
   console.log(firstName, lastName, email, password);
   const hashedPassword = await bcrypt.hash(password, 10);

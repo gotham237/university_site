@@ -1,0 +1,41 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title= subject[0].name
+  link(rel='preconnect' href='https://fonts.googleapis.com')
+  link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+  link(href='https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600;700&display=swap' rel='stylesheet')
+  link(rel='stylesheet' , href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css')
+  
+body
+  section.courses-background
+    nav.nav
+      a(href='/')
+        img(src='../pictures/logo.jpg' alt='logo')
+      #navLinks.nav-links
+        svg.icon(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 512 512' onclick='hideMenu()')
+          path(d='M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z')
+        ul
+          li
+            a(href='/') HOME
+          li
+            a ABOUT US
+          li
+            a(href='/loginSignup') LOGIN/SIGNUP
+          li 
+            a(href='/subjects') Subjects
+          li
+            a CONTACT
+      //-i.fa.fa-bars(onclick='showMenu()')
+      svg.icon(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 448 512' onclick='showMenu()')
+        path(d='M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z')
+    .text-box
+      h1= subject[0].name 
+      p= subject[0].summary
+  // courses
+  section.course
+    p= subject[0].description
+    button.subject-enroll(subject-data-id=`${subject[0]}`) enroll
+  

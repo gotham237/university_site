@@ -420,9 +420,21 @@ svg{
   }
 
   .subject-btn {
-    margin: 40px;
-    padding: 40px;
+    margin-left : 150px;
+    margin-right : 150px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 50px;
+    background-color: rgba(123, 12, 12, 0.7);
+    display: flex;
+    border-radius: 15px;
     justify-content: center;
+  }
+  .subject-btn a {
+    font-size: 40px;
+    text-underline-offset: none;
+    text-decoration: none;
+    color:rgb(0, 0, 0);
   }
 
   .subjects-h1 {
@@ -431,3 +443,5 @@ svg{
     font-size: 60px;
     
   }
+
+  /* ------------- subject.pug style text style --------*/
