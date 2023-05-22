@@ -3,7 +3,7 @@ const path = require("path");
 const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 const mysql = require("mysql2");
-//const { promisify } = require("util");
+const { promisify } = require("util");
 const { v4: uuidv4 } = require("uuid");
 
 dotenv.config({ path: "./config.env" });
@@ -45,10 +45,17 @@ const createSendToken = (user, statusCode, res) => {
 };
 
 exports.signup = async (req, res) => {
-  console.log('signup server');
+  console.log("signup server");
   const { firstName, lastName, email, password } = req.body;
   console.log(firstName, lastName, email, password);
   const hashedPassword = await bcrypt.hash(password, 10);
+
+  if (!firstName || !lastName || !email || !password) {
+    return res.status(400).json({
+      status: "fail",
+      message: "You need to specify all of the input fields!",
+    });
+  }
 
   db.getConnection(async (err, connection) => {
     if (err) throw err;
@@ -88,6 +95,14 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({
+      status: "fail",
+      message: "You need to specify all of the input fields!",
+    });
+  }
+
   db.getConnection(async (err, connection) => {
     if (err) throw err;
     const sqlSearch = "Select * from users where email = ?";
@@ -166,4 +181,46 @@ exports.protect = async (req, res, next) => {
       });
     }
   });
+};
+
+//Only for rendered pages, no errors
+exports.isLoggedIn = async (req, res, next) => {
+  if (req.cookies.jwt) {
+    try {
+      //1) Verify token
+      console.log(typeof req.next, "verify");
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET
+      );
+      console.log(decoded, "id");
+      //2) Check if user still exists
+      db.getConnection(async (err, connection) => {
+        if (err) throw err;
+        const sqlSearch = "SELECT * FROM users WHERE id = ?";
+        const search_query = mysql.format(sqlSearch, [decoded.id]);
+        //console.log(decoded.id, "decoded");
+        connection.query(search_query, (err, result) => {
+          connection.release();
+          if (result == 0) {
+            console.log(typeof req.next, "if");
+            return next();
+          } else {
+            // THERE IS A LOGGED IN USER
+            //console.log(result[0].id, "idddd");
+            req.user = result[0].id;
+            res.locals.user = result[0].id;
+            console.log(typeof req.next, "locals");
+            return next();
+          }
+        });
+      });
+    } catch (err) {
+      console.log(typeof req.next, "catch");
+      return next();
+    }
+    // res.locals.user = req.user;
+    // return next();
+  }
+  next();
 };

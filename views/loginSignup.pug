@@ -11,15 +11,15 @@ head
   .signup
     form
       label(for='chk' aria-hidden='true') Sign up
-      input#signup-firstName(type='text' name='firstName' placeholder='First name' required='')
-      input#signup-lastName(type='text' name='lastName' placeholder='Last name' required='')
-      input#signup-email(type='email' name='email' placeholder='Email' required='')
-      input#signup-pass(type='password' name='pswd' placeholder='Password' required='')
+      input#signup-firstName(type='text', name='firstName', placeholder='First name')
+      input#signup-lastName(type='text', name='lastName', placeholder='Last name')
+      input#signup-email(type='email', name='email', placeholder='Email')
+      input#signup-pass(type='password', name='pswd', placeholder='Password')
       button#signup-btn(type='submit') Sign up
   .login
     form
       label(for='chk' aria-hidden='true') Login
-      input#login-email(type='email' name='email' placeholder='you@example.com' required='')
-      input#login-pass(type='password' name='pswd' placeholder='********' required='')
+      input#login-email(type='email' name='email' placeholder='you@example.com')
+      input#login-pass(type='password' name='pswd' placeholder='********')
       button#login-btn(type='submit') Login
 script(src='/js/bundle.js')

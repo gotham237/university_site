@@ -41,9 +41,15 @@ section.course
     | asperiores maiores!
   each course in courses
     .row-courses
-        .course-column
-          h3= course.name
-          p= course.description
-          p= `Price: ${course.price}`
-          a.button(href=`/${course.slug}`) Buy course
-  
+      .course-column
+        h3= course.name
+        p= course.description
+        p= `Price: ${course.price}`
+        if user
+          button.buyCourse-btn#buyCourse(course-data=`${course.slug}`) Buy course
+        else 
+          a(href='/loginSignup') Log in to buy course
+
+script(src='./js/bundle.js')
+
+

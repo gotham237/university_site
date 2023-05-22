@@ -43,11 +43,12 @@ section.course
     | laboriosam? Beatae nesciunt, sunt, temporibus dignissimos obcaecati
     | voluptatum sed nobis ab saepe rem voluptatem! Quod animi sit unde
     | asperiores maiores!
-  .row 
-    .course-col
-      h3= courses[i].name
-      p= courses[i].summary
-
+  .row
+    each _, i in Array(3) 
+      .course-col
+        h3= courses[i].name
+        p= courses[i].summary
+      
 // campus
 section.campus
   h1 Our Global Campus
@@ -195,3 +196,4 @@ script.
   function hideMenu() {
   navLinks.style.right = "-200px";
   }
+script(src='./js/bundle.js')

@@ -5,7 +5,7 @@ const db = mysql.createPool({
   connectionLimit: 10,
   host: process.env.HOST,
   user: process.env.USER,
-  password: process.env.PASSWORD,
+  password: null,
   database: process.env.DATABASE,
 });
 
@@ -50,7 +50,7 @@ exports.getSubjects = (req, res) => {
     });
   });
 };
-exports.loadSubject = (req,res) => {
+exports.loadSubject = (req, res) => {
   const slug = req.params.slug;
   console.log(slug);
   db.getConnection(async (err, connection) => {
@@ -63,16 +63,17 @@ exports.loadSubject = (req,res) => {
         res.status(404).json({ message: "There is no such subject" });
       } else {
         res.status(200).render("subject", {
-          title: 'subject',
-          subject: result
+          title: "subject",
+          subject: result,
         });
       }
     });
   });
-}
+};
 
 exports.getCourses = (req, res) => {
   db.getConnection((err, connection) => {
+    //console.log('in get courses');
     if (err) throw err;
     const sqlSearch = "Select * from courses";
     const search_query = mysql.format(sqlSearch);
